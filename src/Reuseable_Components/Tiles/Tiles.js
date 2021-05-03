@@ -7,8 +7,9 @@ function Tiles(props) {
       <div className="main-props">
         <h3>
           {props.centreName}
-          {" , "}
+          {" "}
           {props.districtName}
+          {" , "}
           {" ( "}
           {props.paymentType}
           {" ) "}
