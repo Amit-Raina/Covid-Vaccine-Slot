@@ -1,0 +1,16 @@
+.search-bar{
+    width: 40%;
+    border: 2px solid rgba(9, 136, 240, 0.575);
+    padding:15px;
+    background-color: rgba(9, 136, 240, 0.37);
+    margin:0px auto ;
+    margin-top: 10px;
+}
+
+.search-bar input{
+    border: 0px;
+    width: 97%;
+    padding:7px;
+    margin: 1px auto;
+    text-align: center;
+}

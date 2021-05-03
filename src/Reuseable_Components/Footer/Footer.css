@@ -1,0 +1,15 @@
+.footer{
+    background-color: rgba(9, 136, 240, 0.842);
+    padding: 70px;
+    display: flex;
+    font-size: 17px;  
+   justify-content: center;
+}
+.footer-text{
+    color: white;
+    text-decoration: underline;
+}
+.footer-text:hover{
+    color: rgb(0, 0, 0);
+}
+

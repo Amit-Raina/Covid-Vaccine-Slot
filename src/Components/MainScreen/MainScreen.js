@@ -1,78 +1,171 @@
-import axios from 'axios';
-import { Component, Fragment } from 'react';
-import './MainScreen.css';
+import axios from "axios";
+import { Component, Fragment } from "react";
+import "./MainScreen.css";
 
-import { Tiles } from '../../Reuseable_Components/Tiles/Tiles'
+import Tiles from "../../Reuseable_Components/Tiles/Tiles";
+import Header from "../../Reuseable_Components/Header/Header";
+import Footer from "../../Reuseable_Components/Footer/Footer";
+import SearchBar from "../../Reuseable_Components/SearchBar/SearchBar";
 
 class MainScreen extends Component {
+  state = {
+    pincode: "",
+    recieveData: [],
+  };
 
-    state = {
-        pincode: 180002,
-        recieveData: [],
-    }
-
-
-    componentDidMount = () => {
-
-        axios.get(`https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${this.state.pincode}&date=02-05-2021`)
-            .then((response) => {
-                this.setState({
-                    recieveData: response.data.centers
-                })
-                console.log(this.state.recieveData);
+  getPinCode = (value) => {
+      value = parseInt(value);
+    this.setState({
+      pincode: value,
+    });
+    console.log(this.state.pincode);
+  };
 
 
-            })
-    }
+  componentDidUpdate = () => {
+    
 
-    render() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0");
+    var yyyy = today.getFullYear();
+    today = dd + "-" + mm + "-" + yyyy;
 
-        return (
-            <Fragment>
+    axios
+      .get(
+        `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${this.state.pincode}&date=${today}`
+      )
+      .then((response) => {
+        this.setState({
+          recieveData: response.data.centers,
+        });
+      });
+  };
 
-                <div className='main-window'>
-
-                    <div className="detail-box">
-
-                        {this.state.recieveData.map((data, index) => {
-
-                            return <Tiles key={index} centreName={data.name} districtName={data.district_name + " " + data.state_name + " " + data.pincode} paymentType={data.fee_type}
-                                date1={data.sessions[0].date ? data.sessions[0].date : "Not Available"}
-                                slotsAvail1={data.sessions[0].available_capacity ? data.sessions[0].available_capacity : "0"}
-                                ageLimit1={data.sessions[0].min_age_limit ? data.sessions[0].min_age_limit : "Not Available"}
-
-                                date2={data.sessions[1].date ? data.sessions[1].date : "Not Available"}
-                                slotsAvail2={data.sessions[1].available_capacity ? data.sessions[1].available_capacity : "0"}
-                                ageLimit2={data.sessions[1].min_age_limit ? data.sessions[1].min_age_limit : "Not Available"}
-
-                                date3={data.sessions[2].date ? data.sessions[2].date : "Not Available"}
-                                slotsAvail3={data.sessions[2].available_capacity ? data.sessions[2].available_capacity : "0"}
-                                ageLimit3={data.sessions[2].min_age_limit ? data.sessions[2].min_age_limit : "Not Available"}
-
-                                date4={data.sessions[3].date ? data.sessions[3].date : "Not Available"}
-                                slotsAvail4={data.sessions[3].available_capacity ? data.sessions[3].available_capacity : "0"}
-                                ageLimit4={data.sessions[3].min_age_limit ? data.sessions[3].min_age_limit : "Not Available"}
-
-                                date5={data.sessions[4].date ? data.sessions[4].date : "Not Available"}
-                                slotsAvail5={data.sessions[4].available_capacity ? data.sessions[4].available_capacity : "0"}
-                                ageLimit5={data.sessions[4].min_age_limit ? data.sessions[4].min_age_limit : "Not Available"}
-
-                                date6={data.sessions[5].date ? data.sessions[5].date : "Not Available"}
-                                slotsAvail6={data.sessions[5].available_capacity ? data.sessions[5].available_capacity : "0"}
-                                ageLimit6={data.sessions[5].min_age_limit ? data.sessions[5].min_age_limit : "Not Available"}
-                            />
-
-
-                        })}
-
-
-
-                    </div>
-                </div>
-            </Fragment>
-        );
-    }
-
+  render() {
+      
+    return (
+      <Fragment>
+        <div className="main-window">
+          <Header />
+          <SearchBar
+            newPinCode={(event) => this.getPinCode(event.target.value)}
+          />
+          <div className="detail-box">
+              {console.log(this.state.pincode)}
+              {this.state.pincode === "" ? <center><div style={{backgroundColor:"#CCCC00", color:"white" , width:"15%" , padding:"4px" , borderRadius:"20px"}}><h2>Enter Pincode ⚠</h2></div></center>  : ""}
+            {this.state.recieveData.map((data, index) => {
+              return (
+                <Tiles
+                  key={index}
+                  centreName={data.name}
+                  districtName={
+                    data.district_name +
+                    " " +
+                    data.state_name +
+                    " " +
+                    data.pincode
+                  }
+                  paymentType={data.fee_type}
+                  date1={
+                    data.sessions.length >= 1
+                      ? data.sessions[0].date
+                      : "No Slots"
+                  }
+                  slotsAvail1={
+                    data.sessions.length >= 1
+                      ? data.sessions[0].available_capacity
+                      : "0"
+                  }
+                  ageLimit1={
+                    data.sessions.length >= 1
+                      ? data.sessions[0].min_age_limit
+                      : "No Slots"
+                  }
+                  date2={
+                    data.sessions.length >= 2
+                      ? data.sessions[1].date
+                      : "No Slots"
+                  }
+                  slotsAvail2={
+                    data.sessions.length >= 2
+                      ? data.sessions[1].available_capacity
+                      : "0"
+                  }
+                  ageLimit2={
+                    data.sessions.length >= 2
+                      ? data.sessions[1].min_age_limit
+                      : "No Slots"
+                  }
+                  date3={
+                    data.sessions.length >= 3
+                      ? data.sessions[2].date
+                      : "No Slots"
+                  }
+                  slotsAvail3={
+                    data.sessions.length >= 3
+                      ? data.sessions[2].available_capacity
+                      : "0"
+                  }
+                  ageLimit3={
+                    data.sessions.length >= 3
+                      ? data.sessions[2].min_age_limit
+                      : "No Slots"
+                  }
+                  date4={
+                    data.sessions.length >= 4
+                      ? data.sessions[3].date
+                      : "No Slots"
+                  }
+                  slotsAvail4={
+                    data.sessions.length >= 4
+                      ? data.sessions[3].available_capacity
+                      : "0"
+                  }
+                  ageLimit4={
+                    data.sessions.length >= 4
+                      ? data.sessions[3].min_age_limit
+                      : "No Slots"
+                  }
+                  date5={
+                    data.sessions.length >= 5
+                      ? data.sessions[4].date
+                      : "No Slots"
+                  }
+                  slotsAvail5={
+                    data.sessions.length >= 5
+                      ? data.sessions[4].available_capacity
+                      : "0"
+                  }
+                  ageLimit5={
+                    data.sessions.length >= 5
+                      ? data.sessions[4].min_age_limit
+                      : "No Slots"
+                  }
+                  date6={
+                    data.sessions.length >= 6
+                      ? data.sessions[5].date
+                      : "No Slots"
+                  }
+                  slotsAvail6={
+                    data.sessions.length >= 6
+                      ? data.sessions[5].available_capacity
+                      : "0"
+                  }
+                  ageLimit6={
+                    data.sessions.length >= 6
+                      ? data.sessions[5].min_age_limit
+                      : "No Slots"
+                  }
+                />
+              );
+            })}
+          </div>
+          <Footer />
+        </div>
+      </Fragment>
+    );
+  }
 }
 
 export default MainScreen;

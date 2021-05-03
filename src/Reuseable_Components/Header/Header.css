@@ -1,0 +1,13 @@
+.header {
+  background-color:rgba(9, 136, 240, 0.842);
+  padding: 30px;
+}
+
+.basket-logo {
+  color: white;
+}
+
+.basket-icon {
+  font-size: 8em;
+  margin-bottom: 13px;
+}

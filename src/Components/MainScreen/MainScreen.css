@@ -1,21 +1,7 @@
-.main-window{
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgb(255, 255, 255);
-  
+.main-window {
+  background-color:rgba(232, 242, 247, 0.911);
 }
 
-.detail-box{
-
-    margin: 20px;
-    
-    border: 1px solid brown;
-    border-radius: 10px;
-    
+.detail-box {
+  padding: 20px;
 }
-
