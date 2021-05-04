@@ -11,39 +11,41 @@ class MainScreen extends Component {
   state = {
     pincode: "",
     recieveData: [],
+    shoudSearch: true,
   };
 
   getPinCode = (value) => {
-      value = parseInt(value);
     this.setState({
       pincode: value,
+      shoudSearch: true,
     });
-    console.log(this.state.pincode);
   };
 
-
   componentDidUpdate = () => {
-    
-
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, "0");
     var mm = String(today.getMonth() + 1).padStart(2, "0");
     var yyyy = today.getFullYear();
     today = dd + "-" + mm + "-" + yyyy;
 
-    axios
-      .get(
-        `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${this.state.pincode}&date=${today}`
-      )
-      .then((response) => {
-        this.setState({
-          recieveData: response.data.centers,
-        });
-      });
+    if (this.state.pincode.length === 6 && this.state.shoudSearch) {
+      axios
+        .get(
+          `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${parseInt(
+            this.state.pincode
+          )}&date=${today}`
+        )
+        .then((response) => {
+          this.setState({
+            recieveData: response.data.centers,
+            shoudSearch: false,
+          });
+        })
+        .catch(() => {});
+    }
   };
 
   render() {
-      
     return (
       <Fragment>
         <div className="main-window">
@@ -52,8 +54,23 @@ class MainScreen extends Component {
             newPinCode={(event) => this.getPinCode(event.target.value)}
           />
           <div className="detail-box">
-              {console.log(this.state.pincode)}
-              {this.state.pincode === "" ? <center><div style={{backgroundColor:"#CCCC00", color:"white" , width:"15%" , padding:"4px" , borderRadius:"20px"}}><h2>Enter Pincode ⚠</h2></div></center>  : ""}
+            {this.state.pincode === "" ? (
+              <center>
+                <div
+                  style={{
+                    backgroundColor: "#CCCC00",
+                    color: "white",
+                    width: "15%",
+                    padding: "4px",
+                    borderRadius: "20px",
+                  }}
+                >
+                  <h2>Enter Pincode ⚠</h2>
+                </div>
+              </center>
+            ) : (
+              ""
+            )}
             {this.state.recieveData.map((data, index) => {
               return (
                 <Tiles

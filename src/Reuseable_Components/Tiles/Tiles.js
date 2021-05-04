@@ -6,6 +6,8 @@ function Tiles(props) {
     <Fragment>
       <div className="main-props">
         <h3>
+          <i className="fa fa-hospital-o" aria-hidden="true"></i>
+          &nbsp;
           {props.centreName}
           {" , "}
           {props.districtName}
@@ -16,9 +18,18 @@ function Tiles(props) {
 
         <div className="session-slots">
           <div className="left-spacing">
-            <h5>Dates :</h5>
-            <h5>Availability :</h5>
-            <h5>Min Age :</h5>
+            <h5>
+              <i className="fa fa-calendar" aria-hidden="true"></i>&nbsp; Dates
+              :
+            </h5>
+            <h5>
+              <i className="fa fa-users" aria-hidden="true"></i>&nbsp;
+              Availability :
+            </h5>
+            <h5>
+              <i className="fa fa-id-card" aria-hidden="true"></i>&nbsp; Min Age
+              :
+            </h5>
           </div>
           <div className="left-spacing">
             <h5>{props.date1}</h5>

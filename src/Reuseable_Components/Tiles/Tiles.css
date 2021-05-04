@@ -1,15 +1,15 @@
 .main-props {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
-  border-radius: 15px;
-  padding-top: 5px;
-  margin: 5px auto;
-  width: 55%;
-  border: 2px solid rgba(9, 136, 240, 0.842);
+  border-radius: 20px;
+  margin: 9px auto;
+  width: 50%;
+  border: 2px solid rgba(9, 136, 240, 0.479);
+  border-left: 9px solid rgba(9, 136, 240, 0.842);
 }
 
 .main-props h3 {
-  margin-left: 10px;
+  margin-left: 20px;
 }
 .session-slots {
   display: flex;
