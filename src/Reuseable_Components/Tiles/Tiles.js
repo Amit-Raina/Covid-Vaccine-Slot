@@ -30,41 +30,51 @@ function Tiles(props) {
               <i className="fa fa-id-card" aria-hidden="true"></i>&nbsp; Min Age
               :
             </h5>
+            <h5>
+              <i className="fa fa-ambulance" aria-hidden="true"></i>&nbsp; Vaccine
+              :
+            </h5>
           </div>
           <div className="left-spacing">
             <h5>{props.date1}</h5>
             <h5>{props.slotsAvail1}</h5>
             <h5>{props.ageLimit1}</h5>
+            <h5>{props.vaccine1}</h5>
           </div>
 
           <div className="left-spacing">
             <h5>{props.date2}</h5>
             <h5>{props.slotsAvail2}</h5>
             <h5>{props.ageLimit2}</h5>
+            <h5>{props.vaccine2}</h5>
           </div>
 
           <div className="left-spacing">
             <h5>{props.date3}</h5>
             <h5>{props.slotsAvail3}</h5>
             <h5>{props.ageLimit3}</h5>
+            <h5>{props.vaccine3}</h5>
           </div>
 
           <div className="left-spacing">
             <h5>{props.date4}</h5>
             <h5>{props.slotsAvail4}</h5>
             <h5>{props.ageLimit4}</h5>
+            <h5>{props.vaccine4}</h5>
           </div>
 
           <div className="left-spacing">
             <h5>{props.date5}</h5>
             <h5>{props.slotsAvail5}</h5>
             <h5>{props.ageLimit5}</h5>
+            <h5>{props.vaccine5}</h5>
           </div>
 
           <div className="left-spacing">
             <h5>{props.date6}</h5>
             <h5>{props.slotsAvail6}</h5>
             <h5>{props.ageLimit6}</h5>
+            <h5>{props.vaccine6}</h5>
           </div>
         </div>
       </div>

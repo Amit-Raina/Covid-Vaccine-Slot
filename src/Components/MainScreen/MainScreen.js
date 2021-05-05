@@ -41,7 +41,12 @@ class MainScreen extends Component {
             shoudSearch: false,
           });
         })
-        .catch(() => {});
+        .catch(() => {
+          this.setState({
+            recieveData: [],
+            shoudSearch: false
+          });
+        });
     }
   };
 
@@ -61,11 +66,29 @@ class MainScreen extends Component {
                     backgroundColor: "#CCCC00",
                     color: "white",
                     width: "15%",
-                    padding: "4px",
+                    padding: "2px",
                     borderRadius: "20px",
                   }}
                 >
                   <h2>Enter Pincode ⚠</h2>
+                </div>
+              </center>
+            ) : (
+              ""
+            )}
+            {this.state.recieveData.length === 0 &&
+            this.state.shoudSearch === false ? (
+              <center>
+                <div
+                  style={{
+                    backgroundColor: "#CCCC00",
+                    color: "white",
+                    width: "15%",
+                    padding: "2px",
+                    borderRadius: "20px",
+                  }}
+                >
+                  <h2>No Results ⚠</h2>
                 </div>
               </center>
             ) : (
@@ -99,6 +122,11 @@ class MainScreen extends Component {
                       ? data.sessions[0].min_age_limit
                       : "No Slots"
                   }
+                  vaccine1={
+                    data.sessions.length >= 1
+                      ? data.sessions[0].vaccine
+                      : "No Vaccine"
+                  }
                   date2={
                     data.sessions.length >= 2
                       ? data.sessions[1].date
@@ -113,6 +141,11 @@ class MainScreen extends Component {
                     data.sessions.length >= 2
                       ? data.sessions[1].min_age_limit
                       : "No Slots"
+                  }
+                  vaccine2={
+                    data.sessions.length >= 1
+                      ? data.sessions[0].vaccine
+                      : "No Vaccine"
                   }
                   date3={
                     data.sessions.length >= 3
@@ -129,6 +162,11 @@ class MainScreen extends Component {
                       ? data.sessions[2].min_age_limit
                       : "No Slots"
                   }
+                  vaccine3={
+                    data.sessions.length >= 1
+                      ? data.sessions[0].vaccine
+                      : "No Vaccine"
+                  }
                   date4={
                     data.sessions.length >= 4
                       ? data.sessions[3].date
@@ -143,6 +181,11 @@ class MainScreen extends Component {
                     data.sessions.length >= 4
                       ? data.sessions[3].min_age_limit
                       : "No Slots"
+                  }
+                  vaccine4={
+                    data.sessions.length >= 1
+                      ? data.sessions[0].vaccine
+                      : "No Vaccine"
                   }
                   date5={
                     data.sessions.length >= 5
@@ -159,6 +202,11 @@ class MainScreen extends Component {
                       ? data.sessions[4].min_age_limit
                       : "No Slots"
                   }
+                  vaccine5={
+                    data.sessions.length >= 1
+                      ? data.sessions[0].vaccine
+                      : "No Vaccine"
+                  }
                   date6={
                     data.sessions.length >= 6
                       ? data.sessions[5].date
@@ -173,6 +221,11 @@ class MainScreen extends Component {
                     data.sessions.length >= 6
                       ? data.sessions[5].min_age_limit
                       : "No Slots"
+                  }
+                  vaccine6={
+                    data.sessions.length >= 1
+                      ? data.sessions[0].vaccine
+                      : "No Vaccine"
                   }
                 />
               );
