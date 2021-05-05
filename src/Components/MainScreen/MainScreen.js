@@ -143,7 +143,7 @@ class MainScreen extends Component {
                       : "No Slots"
                   }
                   vaccine2={
-                    data.sessions.length >= 1
+                    data.sessions.length >= 2
                       ? data.sessions[0].vaccine
                       : "No Vaccine"
                   }
@@ -163,7 +163,7 @@ class MainScreen extends Component {
                       : "No Slots"
                   }
                   vaccine3={
-                    data.sessions.length >= 1
+                    data.sessions.length >= 3
                       ? data.sessions[0].vaccine
                       : "No Vaccine"
                   }
@@ -183,7 +183,7 @@ class MainScreen extends Component {
                       : "No Slots"
                   }
                   vaccine4={
-                    data.sessions.length >= 1
+                    data.sessions.length >= 4
                       ? data.sessions[0].vaccine
                       : "No Vaccine"
                   }
@@ -203,7 +203,7 @@ class MainScreen extends Component {
                       : "No Slots"
                   }
                   vaccine5={
-                    data.sessions.length >= 1
+                    data.sessions.length >= 5
                       ? data.sessions[0].vaccine
                       : "No Vaccine"
                   }
@@ -223,7 +223,7 @@ class MainScreen extends Component {
                       : "No Slots"
                   }
                   vaccine6={
-                    data.sessions.length >= 1
+                    data.sessions.length >= 6
                       ? data.sessions[0].vaccine
                       : "No Vaccine"
                   }
